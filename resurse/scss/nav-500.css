@@ -1,0 +1,80 @@
+#hamburger {
+  display: block;
+  width: fit-content;
+  margin: 15px;
+}
+
+ul.meniu {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin-left: 0px;
+}
+ul.meniu > li > label span.acasa {
+  display: none;
+}
+ul.meniu ul {
+  display: none;
+  position: absolute;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+ul.meniu li {
+  width: 100%;
+}
+ul.meniu > li {
+  display: inline;
+  background-color: none;
+}
+ul.meniu > li > ul.submeniu > li {
+  background: var(--background-color);
+}
+ul.meniu > li ul {
+  position: absolute;
+  width: 100%;
+  z-index: 200;
+  transform: scale(1, 1);
+}
+ul.meniu > li:hover > ul {
+  z-index: 200;
+  animation: none;
+}
+ul.meniu > li, ul.meniu > li > ul.submeniu > li {
+  font-size: var(--large-text-navbar);
+}
+
+#ch-menu:checked + ul.meniu {
+  display: block;
+  position: absolute;
+  transform-origin: 0 0;
+  background-color: var(--background-color);
+  mask-image: linear-gradient(black, black 20%, transparent);
+  -webkit-mask-image: linear-gradient(black, black 20%, transparent);
+  mask-size: 100% 500%;
+  -webkit-mask-size: 100% 500%;
+  mask-position: 0% 100%;
+  -webkit-mask-position: 0% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation-name: aparitie_meniu_p;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+#ch-menu:checked + ul.meniu > li ul > * {
+  position: relative;
+  z-index: 200;
+}
+
+@keyframes aparitie_meniu_p {
+  0% {
+    -webkit-mask-position: 0% 100%;
+  }
+  100% {
+    -webkit-mask-position: 0% 0%;
+  }
+}
+
+/*# sourceMappingURL=nav-500.css.map */

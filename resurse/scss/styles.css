@@ -1,0 +1,172 @@
+html {
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  --primary-color:#EB6D00;
+  --primary-darker-color:#FA5100;
+  --primary-lighter-color:#F59400;
+  --shiny-border: rgba(250, 81, 0, 0.1);
+  --background-color:#FFFFFF;
+  --section-color: #F8F8F0;
+  --border-color:#000000;
+  --text-color: #3f3350;
+  --large-text-navbar: 0.79rem;
+  --small-text-navbar: 0.55rem;
+  --nav-items-large-width: 9rem;
+  --nav-items-small-width: 5.8rem;
+}
+
+#iframe-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#iframe-buttons {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+#iframe-buttons a {
+  --button-height: 30px;
+  display: block;
+  width: 150px;
+  height: var(--button-height);
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  line-height: var(--button-height);
+  text-decoration: none;
+  color: var(--text-color);
+  text-align: center;
+  background: var(--background-color);
+  transition-property: background, color;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+#iframe-buttons a:hover {
+  background: var(--primary-darker-color);
+  color: white;
+}
+
+#grid {
+  display: grid;
+  grid-template-areas: "gr-despre gr-despre gr-despre gr-despre" "gr-despre gr-despre gr-despre gr-despre" "gr-online-users gr-user-data gr-user-data gr-server-data" "gr-events gr-events gr-table gr-table" "gr-anunturi gr-anunturi gr-table gr-table" "gr-diverse gr-diverse gr-diverse gr-diverse" "gr-diverse gr-diverse gr-diverse gr-diverse";
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 0.5em;
+  grid-column-gap: 0.5em;
+}
+
+#despre {
+  grid-area: gr-despre;
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#online-users {
+  grid-area: gr-online-users;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#user-data-and-stats {
+  grid-area: gr-user-data;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#site-and-server-data {
+  grid-area: gr-server-data;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#events {
+  grid-area: gr-events;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#anunturi {
+  grid-area: gr-anunturi;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#table {
+  grid-area: gr-table;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+#diverse {
+  grid-area: gr-diverse;
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+.fa-house-chimney {
+  color: #000000;
+}
+
+#link-top {
+  position: fixed;
+  display: grid;
+  bottom: 0.3em;
+  opacity: 0.5;
+  left: 0.3em;
+  width: 3rem;
+  box-sizing: border-box;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid var(--primary-color);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  background: var(--background-color);
+  box-shadow: inset 0px 0px 20px var(--primary-color);
+  transition: all 0.5s linear;
+}
+#link-top :hover {
+  opacity: 1;
+}
+#link-top :hover #sageata {
+  opacity: 1;
+  transform: scale(1.3);
+}
+#link-top .tooltiptext {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+#link-top :hover .tooltiptext {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+#sageata {
+  color: var(--text-color);
+  font-size: 40px;
+  margin: auto;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,95 @@
+header h1 {
+    margin-top: 1rem;
+}
+nav {
+    width:100%;
+    position:fixed;
+    background: var(--background-color);
+    height:3.2rem;
+    top:0px;
+    left:0px;
+    z-index: 10;
+    font-family: var(--font-family);
+    z-index:20;
+    border-bottom: 1px solid var(--primary-lighter-color);
+
+    ul {
+        padding:0;
+        margin: 0;
+    }
+}
+
+ul.meniu {
+    margin-left: 20px;
+    li{
+        float:left;
+        width: var(--nav-items-small-width);
+        position:relative;
+        a {
+            text-decoration:none;
+        }
+    }
+    >li>a, >li>label, >li>ul.submeniu>li>a{
+        color: var(--text-color);
+        transition-property: color;
+        transition-duration: 0.8s;
+        transition-timing-function: linear;
+    }
+    ul {
+        display: none;
+        position:absolute;
+        width:100%;
+        border: 1px solid var(--shiny-border);
+        box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    }
+    >li:hover>a, >li>label:hover, >li>ul.submeniu>li:hover>a{
+        color: var(--primary-color); 
+    }
+    >li:hover>ul{
+        display:block;
+        animation-name: aparitie_meniu;
+        animation-iteration-count:1;
+        animation-duration:0.8s;
+        animation-fill-mode:forwards;
+        animation-timing-function:linear;
+        transform-origin: 50% 0;
+    }
+    >li>label span.acasa {
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 1s;
+        transition-timing-function: linear;
+    }
+    >li:hover>label span.acasa {
+        opacity: 1;
+    }
+    >li, >li>ul.submeniu>li{
+        display: block;	
+        font-size: var(--small-text-navbar);
+        font-weight:bold;
+        height:100%;
+        line-height:3rem;
+        text-align:center;		
+        list-style-type:none;    
+        background: var(--background-color);
+    }
+}
+@keyframes aparitie_meniu{
+    0%{
+        transform:scale(0,0);
+    }
+    50%{
+        transform:scale(0.5,0.5);
+    }
+    100%{
+        transform:scale(1,1);
+    }
+}
+.ch-submenu, #hamburger, input#ch-menu {
+    display:none;
+}
+
+/* aparitie submeniu */ 
+.ch-submenu:checked+ul.submenu{
+    display:block;  
+}

@@ -1,0 +1,75 @@
+#hamburger{
+    display: block;
+    width: fit-content;
+    margin: 15px;
+}
+ul.meniu{
+    display: none;
+    position:absolute;
+    width:100%;
+    margin-left: 0px;
+    >li>label span.acasa {
+        display: none;
+    }
+    ul {
+        display: none;
+        position:absolute;
+        width:100%;
+        border: none;
+        box-shadow: none;
+    }
+    li{
+        width:100%;
+    }
+    >li {
+        display: inline;
+        background-color: none;
+    }
+    >li>ul.submeniu>li{   
+        background: var(--background-color);
+    }
+    >li ul{
+        position:absolute;
+        width:100%;
+        z-index:200;
+        transform:scale(1,1);
+    }
+    >li:hover>ul{
+        z-index:200;
+        animation:none;
+    }
+    >li, >li>ul.submeniu>li{
+        font-size: var(--large-text-navbar);
+    }
+}
+#ch-menu:checked+ul.meniu{
+    display: block;
+    position: absolute;
+    transform-origin: 0 0;
+    background-color: var(--background-color);
+    mask-image: linear-gradient( black, black 20%, transparent);
+    -webkit-mask-image: linear-gradient( black, black 20%, transparent);
+    mask-size: 100% 500%;
+    -webkit-mask-size: 100% 500%;
+    mask-position: 0% 100%;
+    -webkit-mask-position: 0% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    animation-name: aparitie_meniu_p;
+    animation-iteration-count:1;
+    animation-duration:2s;
+    animation-fill-mode: forwards;
+    animation-timing-function:linear; 
+    >li ul>*{
+        position:relative;
+        z-index:200;
+    }
+}
+@keyframes aparitie_meniu_p {
+    0% { 
+        -webkit-mask-position: 0% 100%;
+      }
+      100% { 
+        -webkit-mask-position: 0% 0%;
+      }
+}
