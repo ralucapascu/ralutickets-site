@@ -26,11 +26,15 @@ ul.meniu ul {
     position: absolute;
     transform-origin: 0 0;
     background-color: var(--background-color);
-    /* mask-image: linear-gradient( black, black 20%, transparent);
+    mask-image: linear-gradient( black, black 20%, transparent);
+    -webkit-mask-image: linear-gradient( black, black 20%, transparent);
     mask-size: 100% 500%;
+    -webkit-mask-size: 100% 500%;
     mask-position: 0% 100%;
+    -webkit-mask-position: 0% 100%;
     mask-repeat: no-repeat;
-    animation-name: aparitie_meniu_p; */
+    -webkit-mask-repeat: no-repeat;
+    animation-name: aparitie_meniu_p;
     animation-iteration-count:1;
     animation-duration:2s;
     animation-fill-mode: forwards;
@@ -62,14 +66,14 @@ ul.meniu>li:hover>ul{
     z-index:200;
     animation:none;
 }
+ul.meniu>li, ul.meniu>li>ul.submeniu>li{
+    font-size: var(--large-text-navbar);
+}
 @keyframes aparitie_meniu_p {
     0% { 
-        mask-position: 0% 100%;
+        -webkit-mask-position: 0% 100%;
       }
       100% { 
-        mask-position: 0% 0%;
+        -webkit-mask-position: 0% 0%;
       }
-      /* 100% {
-        mask-position: 100% 100%
-      } */
 }
