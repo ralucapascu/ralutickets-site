@@ -1,0 +1,29 @@
+body {
+    --primary-color:#EB6D00;
+    --primary-darker-color:#FA5100;
+    --primary-lighter-color:#F59400;
+    --shiny-border: rgba(250, 81, 0, 0.1);
+    --background-color:#FFFFFF;
+    --border-color:#000000;
+    --text-color: #3f3350;
+    --large-text-navbar: 0.79rem;
+}
+
+#grid {
+    display: grid;
+    grid-template-areas: "gr-despre gr-despre gr-despre gr-despre"
+                         "gr-despre gr-despre gr-despre gr-despre";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 2fr);
+}
+
+#despre {
+    grid-area: gr-despre;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--primary-color);
+}
+.fa-house-chimney {
+    color: #000000;
+}
+  
+
