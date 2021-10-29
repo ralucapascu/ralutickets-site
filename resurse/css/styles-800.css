@@ -1,0 +1,18 @@
+html {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+#grid {
+    display: grid;
+    grid-template-areas: "gr-despre gr-despre gr-despre gr-despre"
+                         "gr-despre gr-despre gr-despre gr-despre"
+                         "gr-online-users gr-user-data gr-user-data gr-server-data"
+                         "gr-events gr-events gr-table gr-table"
+                         "gr-anunturi gr-anunturi gr-table gr-table"
+                         "gr-diverse gr-diverse gr-diverse gr-diverse"
+                         "gr-diverse gr-diverse gr-diverse gr-diverse";
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap:0.5em;
+    grid-column-gap:0.5em;
+}
