@@ -16,6 +16,8 @@ body {
     --small-text-navbar: 0.55rem;
     --nav-items-large-width: 9rem;
     --nav-items-small-width: 5.8rem;
+    --padding-intern:4%;
+    --s: 2px;
 }
 
 #iframe-container {
@@ -165,5 +167,152 @@ body {
     visibility: visible;
     transition-delay: 0.3s;
   }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  footer{
+    background-color: var(--primary-darker-color);
+    color: white;
+    height: 115px;
+    padding-left:var(--padding-intern);
+    padding-right:var(--padding-intern);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+::cue {
+    text-align:center;
+    background-image: linear-gradient(var(--primary-darker-color), var(--text-color));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; 
+}
+#table{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    caption-side: bottom;
+    border-spacing:var(--s);
+   
+}
+
+#tab-orar{
+    text-align:center;
+}
+
+
+#tab-orar td, #tab-orar th{
+    border:1px solid var(--primary-lighter-color);
+    padding:0.2rem;
+}
+
+#tab-orar{
+    border-collapse:separate;
+}
+
+tr:nth-child(even) {
+    background: var(--primary-color)
+}
+
+tr:nth-child(odd) {
+    background: var(--primary-lighter-color)
+}
+#tbody tr:hover{
+    background: var(--primary-darker-color);
+}
+#tbody tr{
+    transition: background 1s;
+}
+
+#tab-orar tbody tr{
+    counter-increment: ct-orar;
+}
+
+@media print {
+
+	#absolut{
+		position: absolute;
+		display: inline-block;
+		top:100%;
+		width:20px;
+		height:20px;
+		right:0;
+		overflow: visible;
+	}
+	#absolut::after{
+		content:"Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
+		position: absolute;
+		font-size:10px;
+		right:0;
+		border:5px double black;
+		width:200px;
+		height:35px;
+		display: inline-block;
+	}
+
+	h1{
+		page-break-after: always;
+		margin-top: 50%;
+		text-align:center;
+		margin-left:1cm;
+	}
+  #grid-pag{
+		font-size: 10px;
+		box-sizing:border-box;
+		page-break-before:always;
+		background-color: white;
+			grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;
+		}
+		html, body {
+        width: 210mm;
+        /* height: 297mm; */
+        /*height: 282mm;*/
+				overflow:visible !important;
+		}
+		#watermark
+		{
+			display: block;
+			position: fixed;/*apare pe toate paginile*/
+			bottom:0;
+			color:rgba(0,0,0,0.4);
+			right:0;
+		}
+		#watermark::after{
+			
+			opacity:0.5;
+			padding:5px;
+			display: block;
+			background: white;
+			border:2px solid black;
+			border-top-left-radius:10px;
+			border-bottom-left-radius:10px;
+			border-right:none;
+			content:"Copyright Irina Ciocan";
+		}
+
+	#end{
+		page-break-before: always;
+	}
+}
+
+	@page {
+		size: A4 portrait;
+		margin-bottom:2cm;
+		margin-top:2cm;
+		counter-increment: page;
+			
+	}
+	@page:left{
+
+		margin-left:2cm;
+		margin-right:1cm;
+		border-radius: 20cm;
+	}
+	@page:right{
+
+		margin-right:2cm;
+		margin-left:1cm;
+	}
   
 

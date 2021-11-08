@@ -37,12 +37,7 @@
         </section>
 
         <section id="user-data-and-stats"> 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at ligula massa. Curabitur facilisis varius
-                 pulvinar. Vivamus eleifend non mauris faucibus sodales. Ut rutrum, ex ac volutpat consectetur, mauris ipsum 
-                 consequat nulla, et varius mauris magna sed tellus. Quisque vitae nibh nec ex gravida rhoncus nec sed dui. 
-                 Nulla pharetra velit nec aliquam eleifend. Pellentesque tincidunt leo id posuere dapibus. Cras venenatis 
-                 elementum auctor.
-            </p>
+            <%- "Ip-ul dumneavoastra este: " + locals.ip %>
         </section>
 
         <section id="site-and-server-data"> 
@@ -75,26 +70,57 @@
         </section>
 
         <section id="table"> 
-            <table>
-                <tr>
-                  <th>Company</th>
-                  <th>Contact</th>
-                  <th>Country</th>
-                </tr>
-                <tr>
-                  <td>Alfreds Futterkiste</td>
-                  <td>Maria Anders</td>
-                  <td>Germany</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-              </table>
+            <div class="schedule-table">
+            <table id="tab-orar" >
+                <caption >Orarul se poate schimba datorita pandemiei!!!</caption>
+                <thead>
+                    <tr>
+                        <th>Nume Eveniment</th>
+                        <th>Tip Eveniment</th>
+                        <th>Program</th>
+                        <th>Locatia</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td>FC Petrolul - FC U Craiova</td>
+                        <td>Sportiv</td>
+                        <td>Miercuri, 20 Octombrie 2021</td>
+                        <td>Stadionul Ilie Oana, Ploiesti</td>
+                    </tr>
+                    <tr>
+                        <td>CRISTI MINCULESCU, VALTER & BORO</td>
+                        <td>Concerte</td>
+                        <td>Miercuri, 20 Octombrie 2021</td>
+                        <td>Sala Palatului, Bucuresti</td>
+                    </tr>
+                    <tr>
+                        <td>Magic Way</td>
+                        <td>Teatru pentru copii</td>
+                        <td>Miercuri, 20 Octombrie 2021</td>
+                        <td>Opera Comică pentru Copii, Bucureşti</td>
+                    </tr>
+                    <tr>
+                        <td>Jack si vrejul de fasole</td>
+                        <td>Teatru pentru copii</td>
+                        <td>Miercuri, 20 Octombrie 2021</td>
+                        <td>Opera Comică pentru Copii, Bucureşti</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
         </section>
 
         <div id="diverse">
+            <video controls style="width:80%;height:auto" poster="/resurse/imagini/concert.jpg">
+                <source src="resurse/video/CROWD_JUMPS_LIGHTS_PULSE.mp4" type="video/mp4">
+                <source src="resurse/video/CROWD_JUMPS_LIGHTS_PULSE.ogv" type="video/ogv">
+                <track  default src="resurse/video/tracks/captions-concert.vtt" kind="captions" srclang="ro" label="română" /> 
+                <track  src="resurse/video/tracks/captions-concert-en.vtt" kind="captions" srclang="en" label="engleză" />
+              </video>
         <section id="recomandari">
             <h2>Recomandarile noastre</h2>
             <p>Mai jos puteti vedea recomandarile noastre pentru luna octombrie:</p>
