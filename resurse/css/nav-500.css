@@ -24,6 +24,7 @@ ul.meniu ul {
 #ch-menu:checked+ul.meniu{
     display: block;
     position: absolute;
+    top: var(--nav-height);
     transform-origin: 0 0;
     background-color: var(--background-color);
     mask-image: linear-gradient( black, black 20%, transparent);

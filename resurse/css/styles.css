@@ -18,6 +18,7 @@ body {
     --nav-items-small-width: 5.8rem;
     --padding-intern:4%;
     --s: 2px;
+    --nav-height: 3.2rem;
 }
 
 #iframe-container {
@@ -123,7 +124,8 @@ body {
     bottom:0.3em;
     opacity:0.5;
     left:0.3em;
-    width:3rem;
+    grid-template-columns: 3rem;
+    grid-template-rows: 3rem;
     box-sizing: border-box;
     height:3rem;
     line-height:3rem;
@@ -135,6 +137,8 @@ body {
     background: var(--background-color);
     box-shadow: inset 0px 0px 20px var(--primary-color);
     transition: all .5s linear ;
+    align-items: center;
+    justify-items: center;
 }
 
 #link-top:hover {
@@ -147,7 +151,6 @@ body {
 #sageata {
     color: var(--text-color);
     font-size: 40px;
-    margin: auto;
 }
 #link-top .tooltiptext {
     visibility: hidden;
