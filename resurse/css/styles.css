@@ -24,6 +24,7 @@ body {
 #iframe-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #iframe-buttons {
@@ -108,6 +109,10 @@ body {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    caption-side: bottom;
 }
 #diverse {
     grid-area: gr-diverse;
@@ -191,19 +196,11 @@ body {
     background-clip: text;
     -webkit-background-clip: text; 
 }
-#table{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    caption-side: bottom;
-    border-spacing:var(--s);
-   
-}
 
 #tab-orar{
     text-align:center;
+    border-spacing: var(--s);
 }
-
 
 #tab-orar td, #tab-orar th{
     border:1px solid var(--primary-lighter-color);
@@ -232,66 +229,72 @@ tr:nth-child(odd) {
     counter-increment: ct-orar;
 }
 
+#watermark,#banner{
+    display:none;
+}
+
 @media print {
 
-	#absolut{
+	#banner {
 		position: absolute;
 		display: inline-block;
-		top:100%;
-		width:20px;
-		height:20px;
-		right:0;
+        border:5px dotted black;
+		top: 0;
+		width:80%;
+		margin: 0 auto;
 		overflow: visible;
 	}
-	#absolut::after{
-		content:"Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
-		position: absolute;
-		font-size:10px;
-		right:0;
-		border:5px double black;
-		width:200px;
-		height:35px;
-		display: inline-block;
-	}
+
+    /* header {
+        display: none;
+    } */
 
 	h1{
 		page-break-after: always;
-		margin-top: 50%;
+        text-decoration: underline;
+		margin: auto auto;
 		text-align:center;
-		margin-left:1cm;
 	}
-  #grid-pag{
+
+    #iframe-container *, img *, nav *, #link-top {
+        display: none;
+    }
+    video, video track, video source{
+        display: none;
+    }
+    a {
+        text-decoration:none;
+    }
+    #grid{
 		font-size: 10px;
 		box-sizing:border-box;
-		page-break-before:always;
-		background-color: white;
-			grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;
+		page-break-after:always;
+		grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;
 		}
-		html, body {
+	html, body {
         width: 210mm;
         /* height: 297mm; */
         /*height: 282mm;*/
-				overflow:visible !important;
-		}
+		overflow:visible !important;
+	}
 		#watermark
 		{
 			display: block;
 			position: fixed;/*apare pe toate paginile*/
 			bottom:0;
-			color:rgba(0,0,0,0.4);
+			color:var(--text-color);
 			right:0;
 		}
 		#watermark::after{
-			
-			opacity:0.5;
+			width: 100px;
+            height: 2cm;
+			opacity: 0.65;
 			padding:5px;
 			display: block;
 			background: white;
-			border:2px solid black;
-			border-top-left-radius:10px;
-			border-bottom-left-radius:10px;
-			border-right:none;
-			content:"Copyright Irina Ciocan";
+			border:2px double black;
+            border-radius: 10px;
+			content:"Copyright Raluca Pascu";
 		}
 
 	#end{
@@ -307,15 +310,23 @@ tr:nth-child(odd) {
 			
 	}
 	@page:left{
-
-		margin-left:2cm;
-		margin-right:1cm;
-		border-radius: 20cm;
+		margin-left: 2.5cm;
+		margin-right: 0.5cm;
 	}
 	@page:right{
-
-		margin-right:2cm;
-		margin-left:1cm;
+		margin-right: 2.5cm;
+		margin-left: 0.5cm;
 	}
   
+    hr {
+        border: none;
+        height: 20px;
+        width: 100%;
+        background-image: radial-gradient(circle, var(--primary-lighter-color) 40%, var(--primary-darker-color) 50%, transparent 70%),
+        linear-gradient(white, transparent, var(--primary-darker-color)50%, transparent, white);
+        background-size: 20px 20px, auto;
+        background-repeat: no-repeat, no-repeat;
+        background-position-x: center;
+        background-position-y: center;
 
+    }

@@ -10,6 +10,7 @@
     <body id="inceput">
         <%- include("../fragmente/header.ejs") %>
         <main>
+            <p id="banner">Acest site este construit in scop educational</p>
         <div id="grid">
         <section id="despre">  <!-- task 7 si 8-->
             <h2>Despre noi</h2>
@@ -96,13 +97,12 @@
                     </tr>
                     <tr>
                         <td>Magic Way</td>
-                        <td>Teatru pentru copii</td>
+                        <td rowspan="2">Teatru pentru copii</td>
                         <td>Miercuri, 20 Octombrie 2021</td>
                         <td>Opera Comică pentru Copii, Bucureşti</td>
                     </tr>
                     <tr>
                         <td>Jack si vrejul de fasole</td>
-                        <td>Teatru pentru copii</td>
                         <td>Miercuri, 20 Octombrie 2021</td>
                         <td>Opera Comică pentru Copii, Bucureşti</td>
                     </tr>
@@ -121,6 +121,7 @@
                 <track  default src="resurse/video/tracks/captions-concert.vtt" kind="captions" srclang="ro" label="română" /> 
                 <track  src="resurse/video/tracks/captions-concert-en.vtt" kind="captions" srclang="en" label="engleză" />
               </video>
+            <hr>
         <section id="recomandari">
             <h2>Recomandarile noastre</h2>
             <p>Mai jos puteti vedea recomandarile noastre pentru luna octombrie:</p>
@@ -200,6 +201,7 @@
     </div>
         </main>
     </div>
+    <p id="end">Un paragraf de final.</p>
     <%- include("../fragmente/footer.ejs") %>
     </body>
 </html>

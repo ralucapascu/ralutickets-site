@@ -16,3 +16,7 @@ html {
     grid-row-gap:0.5em;
     grid-column-gap:0.5em;
 }
+
+#table {
+    overflow-x: scroll;
+}
