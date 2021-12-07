@@ -5,9 +5,19 @@ html {
 
 #grid {
     display: grid;
+    grid-template-areas: "gr-despre"
+                         "gr-online-users"
+                         "gr-user-data"
+                         "gr-server-data"
+                         "gr-events"
+                         "gr-table"
+                         "gr-anunturi"
+                         "gr-diverse";
+    grid-template-columns: 1fr;
     padding-left:1em;
     padding-right:1em; 
-    display:block;
+    grid-row-gap:0.5em;
+    grid-column-gap:0.5em;
 }
 
 #table {

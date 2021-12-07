@@ -12,10 +12,10 @@ body {
     --section-color: #F8F8F0;
     --border-color:#000000;
     --text-color: #3f3350;
-    --large-text-navbar: 0.79rem;
-    --small-text-navbar: 0.55rem;
-    --nav-items-large-width: 9rem;
-    --nav-items-small-width: 5.8rem;
+    --large-text-navbar: 1rem;
+    --small-text-navbar: 0.85rem;
+    --nav-items-large-width: 13rem;
+    --nav-items-small-width: 9rem;
     --padding-intern:4%;
     --s: 2px;
     --nav-height: 3.2rem;
@@ -229,7 +229,7 @@ tr:nth-child(odd) {
     counter-increment: ct-orar;
 }
 
-#watermark,#banner{
+#watermark, #banner, #end{
     display:none;
 }
 

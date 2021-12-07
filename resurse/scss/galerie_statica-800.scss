@@ -1,0 +1,35 @@
+#galerie-statica {
+    padding-left:var(--padding-intern);
+    padding-right:var(--padding-intern);
+    width: fit-content;
+    overflow: hidden;
+}
+  
+#grid-galerie figcaption {
+    text-align:center;
+}
+  
+figure {
+    margin: 0;
+}
+
+#grid-galerie {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap:0.5em;
+    grid-column-gap:0.5em; 
+    padding-left: 80px;
+
+    $k: 1;
+    $nrow: 5;
+    $ncol: 2;
+
+    @for $i from 1 through $nrow {
+        @for $j from 1 through $ncol {
+            figure:nth-child(#{$k}){
+                grid-area:#{$i}/#{$j};
+                $k: $k+1; 
+            }
+        }
+    }
+}

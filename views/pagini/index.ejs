@@ -116,10 +116,10 @@
 
         <div id="diverse">
             <video controls style="width:80%;height:auto" poster="/resurse/imagini/concert.jpg">
-                <source src="resurse/video/CROWD_JUMPS_LIGHTS_PULSE.mp4" type="video/mp4">
-                <source src="resurse/video/CROWD_JUMPS_LIGHTS_PULSE.ogv" type="video/ogv">
-                <track  default src="resurse/video/tracks/captions-concert.vtt" kind="captions" srclang="ro" label="română" /> 
-                <track  src="resurse/video/tracks/captions-concert-en.vtt" kind="captions" srclang="en" label="engleză" />
+                <source src="/resurse/video/CROWD_JUMPS_LIGHTS_PULSE.mp4" type="video/mp4">
+                <source src="/resurse/video/CROWD_JUMPS_LIGHTS_PULSE.ogv" type="video/ogv">
+                <track  default src="/resurse/video/tracks/captions-concert.vtt" kind="captions" srclang="ro" label="română" /> 
+                <track  src="/resurse/video/tracks/captions-concert-en.vtt" kind="captions" srclang="en" label="engleză" />
               </video>
             <hr>
         <section id="recomandari">
@@ -199,6 +199,8 @@
             </details>
         </section>
     </div>
+    <%- include("../fragmente/galerie_statica.ejs") %>
+    <%- include("../fragmente/galerie_animata.ejs") %>
         </main>
     </div>
     <p id="end">Un paragraf de final.</p>
