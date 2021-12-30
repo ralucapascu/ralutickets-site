@@ -305,6 +305,6 @@ app.get("/*",function(req, res) {
 });
 
 var s_port=process.env.PORT || 5000;
-server.listen(s_port);
+app.listen(s_port);
 
 console.log("Serverul a pornit");
