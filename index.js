@@ -15,7 +15,11 @@ const { route } = require("express/lib/application");
 var app=express();
 app.set("view engine","ejs");
 
-var client = new Client({user: "raluca", password: "parola", host: "localhost", port: "5432", database:"raluticketsdb"});
+// var client = new Client({user: "raluca", password: "parola", host: "localhost", port: "5432", database:"raluticketsdb"});
+var client = new Client({user: "cqeevgxnkchzyk", password: "82d4385f38150637a889dc24580e3a30cd90cb50787e30d5ba616fb9a4e15375", 
+host: "ec2-52-86-249-217.compute-1.amazonaws.com", port: "5432", database:"d9t59g9hcsjf3r", ssl: {
+    rejectUnauthorized: false
+  }});
 client.connect();
 
 var optiuni_categ_eveniment=[];
