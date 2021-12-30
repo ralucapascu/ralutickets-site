@@ -24,6 +24,7 @@ client.connect();
 
 var optiuni_categ_eveniment=[];
 client.query("select * from unnest(enum_range(null::tip_eveniment))", function(errCateg, rezCateg) {
+    console.log(errCateg, rezCateg);
     for(let elem of rezCateg.rows) {
         optiuni_categ_eveniment.push(elem.unnest);
     }
