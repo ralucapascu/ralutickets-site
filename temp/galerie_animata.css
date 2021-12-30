@@ -46,7 +46,7 @@ x%........3s
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
-  animation-duration: 9s;
+  animation-duration: 33s;
   transform-origin: center center;
 }
 
@@ -62,6 +62,38 @@ x%........3s
   animation-delay: 6s;
 }
 
+#galerie-animata figure:nth-of-type(4) {
+  animation-delay: 9s;
+}
+
+#galerie-animata figure:nth-of-type(5) {
+  animation-delay: 12s;
+}
+
+#galerie-animata figure:nth-of-type(6) {
+  animation-delay: 15s;
+}
+
+#galerie-animata figure:nth-of-type(7) {
+  animation-delay: 18s;
+}
+
+#galerie-animata figure:nth-of-type(8) {
+  animation-delay: 21s;
+}
+
+#galerie-animata figure:nth-of-type(9) {
+  animation-delay: 24s;
+}
+
+#galerie-animata figure:nth-of-type(10) {
+  animation-delay: 27s;
+}
+
+#galerie-animata figure:nth-of-type(11) {
+  animation-delay: 30s;
+}
+
 @keyframes gal_exemplu {
   0% {
     z-index: 10;
@@ -69,29 +101,29 @@ x%........3s
   }
   /*perioada 0-5% in care se afiseaza fara efect */
   /*transformare inceput disparitie*/
-  16.6666666667% {
+  4.5454545455% {
     transform: translateX(20%);
   }
   /* de  aici doresc sa descresc si opacitatea;*/
-  30.3333333333% {
+  6.0909090909% {
     opacity: 1;
   }
-  33.3333332333% {
+  9.0909089909% {
     z-index: 10;
     opacity: 0;
     transform: translateX(-40%);
   }
-  33.3333333333% {
+  9.0909090909% {
     z-index: -10;
     transform: translateX(0%);
   }
   /* il ascund cat mai in spate sa nu vina peste imaginile care erau mai sus in html decat el*/
-  66.6666665667% {
+  90.9090908091% {
     opacity: 0;
     z-index: -10;
     transform: translateX(0%);
   }
-  66.6666665667% {
+  90.9090908091% {
     z-index: 0;
   }
   /*setez z-index la 0 ca sa revina la ordinea normala de afisare*/

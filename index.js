@@ -11,18 +11,82 @@ const sass = require('sass');
 const formidable = require('formidable');
 const nodemailer = require('nodemailer');
 const random = require('random');
+const { route } = require("express/lib/application");
 var app=express();
 app.set("view engine","ejs");
 
-var client = new Client({user: "postgres", password: "admin", host: "localhost", port: "5432", database:"ralutickets"});
+var client = new Client({user: "raluca", password: "parola", host: "localhost", port: "5432", database:"raluticketsdb"});
 client.connect();
 
+var optiuni_categ_eveniment=[];
+client.query("select * from unnest(enum_range(null::tip_eveniment))", function(errCateg, rezCateg) {
+    for(let elem of rezCateg.rows) {
+        optiuni_categ_eveniment.push(elem.unnest);
+    }
+});
 
-app = express();
+var optiuni_categ_varsta = [];
+client.query("select * from unnest(enum_range(null::tip_varsta))", function(errCateg, rezCateg) {
+    for(let elem of rezCateg.rows) {
+        optiuni_categ_varsta.push(elem.unnest);
+    }
+});
 
 console.log(__dirname);
 app.set("view engine", "ejs");
 app.use("/resurse", express.static(__dirname + "/resurse"))
+
+function getMonthName(month) {
+    switch (month) {
+        case 0:
+            return "Ianuarie";
+        case 1:
+            return "Februarie";
+        case 2:
+            return "Martie";
+        case 3:
+            return "Aprilie";
+        case 4: 
+            return "Mai";
+        case 5:
+            return "Iunie";
+        case 6:
+            return "Iulie";
+        case 7:
+            return "August";
+        case 8:
+            return "Septembrie";
+        case 9:
+            return "Octombrie";
+        case 10:
+            return "Noiembrie";
+        case 11:
+            return "Decembrie";
+        default:
+            return "Month not found"
+    }
+}
+
+function getDayName(day) {
+    switch (day) {
+        case 1:
+            return "Luni";
+        case 2:
+            return "Marti";
+        case 3:
+            return "Miercuri";
+        case 4: 
+            return "Joi";
+        case 5:
+            return "Vineri";
+        case 6:
+            return "Sambata";
+        case 7:
+            return "Duminica";
+        default:
+            return "Day not found"
+    }
+}
 
 function creeazaImagini() {
     var buf = fs.readFileSync(__dirname+"/resurse/json/galerie_statica.json").toString("utf-8");
@@ -50,8 +114,8 @@ function filtreazaImaginiStatica() {
         nr += 1;
         let oraInceput = imag.timp.slice(0,5);
         let oraSfarsit = imag.timp.slice(6,11);
-        startDate = moment(oraInceput, "hh:ss");
-        endDate = moment(oraSfarsit, "hh:ss");
+        startDate = moment(oraInceput, "hh:mm");
+        endDate = moment(oraSfarsit, "hh:mm");
         if(startDate.isBefore(d) && endDate.isAfter(d)) {
             if(nr <= 10) {
                 imaginiValideStatica.push(imag);
@@ -66,7 +130,7 @@ function filtreazaImaginiDinamica() {
     imaginiValideAnimata = [];
     let nr = 1;
     let i = 0;
-    while(nr %2 == 1) {
+    while(nr % 2 == 1) {
         nr = random.int((min = 6), (max = 12));
     }
     for(let imag of obImagini.imagini) {
@@ -83,6 +147,8 @@ function filtreazaImaginiDinamica() {
         nrImagAleatoare = imaginiValideAnimata.length;
     }
 }
+
+app.get(["/favicon.ico"], function(req , res){/*code*/});
 
 app.get("*/galerie_animata.css", function(req, res) {
     res.setHeader("Content-Type", "text/css");
@@ -112,16 +178,86 @@ app.get("*/galerie_animata.css.map",function(req, res){
 app.get("/*map",function(req, res){
 });
 
-app.get(["/","/index"], function(req, res) {
+app.get(["/","/index"], async function(req, res) {
     filtreazaImaginiStatica();
     filtreazaImaginiDinamica();
-    res.render("pagini/index", {ip: req.ip, imaginiStatica: imaginiValideStatica, imaginiAnimata: imaginiValideAnimata}); //calea e relativa la folderul views
+    // const rezultat = await getEventType();
+    // console.log(rezultat);
+    res.render("pagini/index", {ip: req.ip, imaginiStatica: imaginiValideStatica, imaginiAnimata: imaginiValideAnimata,
+    optiuni_categ_eveniment: optiuni_categ_eveniment}); //calea e relativa la folderul views
 })
 
-app.get('/produse', function(req, res) {
-    client.query("SELECT * FROM produs", function(err, rez) {
-        res.render("pagini/produse", {produse: rez.rows});
-    });
+var evenimente = [];
+var bilete = [];
+
+app.get('/evenimente', function(req, res) {
+    var conditie="";
+    const subcategorii = new Set();
+    const tari = new Set();
+    if(req.query.tip)
+        conditie +=` where categ_eveniment='${req.query.tip}'`;
+
+    client.query("SELECT * FROM bilet", function(err, rez) {
+        bilete = rez.rows;
+    })
+
+    client.query(`SELECT * FROM eveniment ${conditie}`, function(err, rez) {
+        var formatted_date;
+        evenimente = rez.rows;
+        var pret_min_max = 0;
+        for (let row of evenimente) {
+            formatted_date = moment(row.data_eveniment, "YYYY-MM-DD hh:mm:ss");
+            an_eveniment = formatted_date.year();
+            zi_eveniment = formatted_date.date();
+            nume_zi_eveniment = getDayName(formatted_date.day());
+            nume_luna_eveniment = getMonthName(formatted_date.month());
+            row.an_eveniment = an_eveniment;
+            row.zi_eveniment = zi_eveniment;
+            row.nume_zi_eveniment = nume_zi_eveniment;
+            row.nume_luna_eveniment = nume_luna_eveniment;
+            subcategs = row.subcateg_eveniment.split(",");
+            for (let subcateg of subcategs) {
+                subcategorii.add(subcateg);
+            }
+            tari.add(row.tara);
+            var bilete_eveniment = [];
+            for(bilet of bilete) {
+                if(bilet.id_eveniment === row.id_eveniment) {
+                    bilete_eveniment.push(bilet);
+                }
+            }
+            pret_min = bilete_eveniment[0].pret_bilet;
+            for(let i = 1 ; i < bilete_eveniment.length; i++) {
+                if(bilete_eveniment[i].pret_bilet < pret_min) {
+                    pret_min = bilete_eveniment[i].pret_bilet;
+                }
+            }
+            row.pret_min = pret_min;
+            if(row.pret_min > pret_min_max) {
+                pret_min_max = row.pret_min;
+            }
+        }
+        res.render("pagini/evenimente", {optiuni_categ_eveniment: optiuni_categ_eveniment, optiuni_categ_varsta: optiuni_categ_varsta, 
+            evenimente: rez.rows, subcategorii: subcategorii, tari: tari, pret_min_max: pret_min_max});
+    })
+})
+
+app.get("/eveniment/:id", function(req, res){
+    var eveniment;
+    var bilete_ev = [];
+    for(let ev of evenimente) {
+        if(ev.id_eveniment === parseInt(req.params.id)) {
+            eveniment = ev;
+            break;
+        }
+    }
+    for(let bilet of bilete) {
+        if(bilet.id_eveniment === parseInt(req.params.id)) {
+            bilete_ev.push(bilet);
+        }
+    }
+    console.log(bilete_ev, eveniment);
+    res.render("pagini/eveniment", {optiuni_categ_eveniment: optiuni_categ_eveniment, eveniment: eveniment, bilete: bilete_ev});
 })
 
 app.get("/ceva", function(req, res) {
@@ -129,8 +265,6 @@ app.get("/ceva", function(req, res) {
     res.write("Pagina 2");
     res.end();
 })
-
-app.get('/favicon.ico' , function(req , res){/*code*/});
 
 app.get("/info-covid", function(req, res) {
     console.log(req.url)
@@ -142,11 +276,11 @@ app.get("/*.ejs",function(req, res) {
         if(err) {
             console.log(err.message);
             if(err.message.includes("Failed to lookup")) {
-                res.status(403).render("pagini/403");
+                res.status(403).render("pagini/403", {optiuni_categ_eveniment: optiuni_categ_eveniment});
                 return;
             }
             else {
-                res.status(403).render("pagini/eroare-generala", {errMsg: err.message, errCode: err.code});
+                res.status(403).render("pagini/eroare-generala", {errMsg: err.message, errCode: err.code, optiuni_categ_eveniment: optiuni_categ_eveniment});
                 return;
         }
     }
@@ -158,11 +292,11 @@ app.get("/*",function(req, res) {
     res.render("pagini" + req.url, function(err,rezultatRender){
         if(err) {
             if(err.message.includes("Failed to lookup")) {
-                res.status(404).render("pagini/404");
+                res.status(404).render("pagini/404", {optiuni_categ_eveniment: optiuni_categ_eveniment});
                 return;
             }
             else {
-                res.render("pagini/eroare-generala", {errMsg: err.message, errCode: err.code});
+                res.render("pagini/eroare-generala", {errMsg: err.message, errCode: err.code, optiuni_categ_eveniment: optiuni_categ_eveniment});
                 return;
         }
     }
@@ -170,6 +304,7 @@ app.get("/*",function(req, res) {
     });
 });
 
-app.listen(8080);
+var s_port=process.env.PORT || 5000;
+server.listen(s_port);
 
 console.log("Serverul a pornit");

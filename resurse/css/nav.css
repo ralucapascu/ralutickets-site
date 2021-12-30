@@ -5,7 +5,7 @@ h1 {
 nav {
     width:100%;
     position:fixed;
-    background: var(--background-color);
+    background: var(--section-background-color);
     height: var(--nav-height);
     top:0px;
     left:0px;
@@ -82,7 +82,7 @@ ul.meniu>li, ul.meniu>li>ul.submeniu>li{
     line-height:3rem;
     text-align:center;		
     list-style-type:none;    
-    background: var(--background-color);
+    background: var(--section-background-color);
 }
 .ch-submenu, #hamburger, input#ch-menu {
     display:none;

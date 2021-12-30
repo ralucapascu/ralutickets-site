@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>Evenimente</title>
+        <meta name="description" content="RaluTickets ofera bilete la o varietate de evenimente, cum ar fi: evenimente sportive, culturale, concerte, festivaluri, teatru si multe altele. ">
+        <meta name="keywords" content="bilet, bilete, bilete online, evenimente, sport, muzica, piesa de teatru, festival, concert, copii, spectacole, rock, fotbal, tenis, pop">
+        <%- include("../fragmente/head-evenimente.ejs") %>
+    </head>
+
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <div id="container-eveniment">
+                <article class="eveniment" id="ar_ent_<%- locals.eveniment.id_eveniment%>">
+                    <h3><%- locals.eveniment.nume_eveniment %></h3>
+                    <div id="info-produs">
+                        <div id="categ-produs">
+                            <p><b>Categorie</b>: <span class="val-categ-eveniment"><%- locals.eveniment.categ_eveniment %></span></p>
+                            <img id="imag-produs" src="/<%- locals.eveniment.cale_imagine %>" width="180px" height="240px">
+                            <p id="descriere"><span class="val-descriere" value="<%- locals.eveniment.descriere %>"></span><%- locals.eveniment.descriere %></p>
+                        </div>
+                        <div class="alte-detalii">
+                            <p><b>Pret bilet</b>: de la <span class="val-pret-min" value="<%- locals.eveniment.pret_min%>"><%- locals.eveniment.pret_min %></span> lei</p>
+                            <p><b>Subcategorie</b>: <span class="val-subcateg-eveniment" value="<%- locals.eveniment.subcateg_eveniment%>"></span><%- locals.eveniment.subcateg_eveniment %></p>
+                            <p><b>Categorie varsta</b>: <span class="val-categ-varsta" value="<%- locals.eveniment.categ_varsta%>"></span><%- locals.eveniment.categ_varsta %></p>
+                            <p><b>Data eveniment</b>: 
+                                <time datetime="<%- eveniment.data_eveniment%>">
+                                    <%- locals.eveniment.zi_eveniment %>-<%- locals.eveniment.nume_luna_eveniment%>-<%- locals.eveniment.an_eveniment%> [<%- locals.eveniment.nume_zi_eveniment %>]
+                                </time>
+                                <span class="data-eveniment" value="<%- locals.eveniment.data_eveniment%>" style="display: none;"></span>
+                            </p>
+                            <p><b>Admite voucher</b>: <span class="val-admite-voucher" value="<%- locals.eveniment.admite_voucher%>">
+                                <%- locals.eveniment.admite_voucher === true ? "da" : "nu" %>
+                                </span>
+                            </p>
+                            <p><b>Locatie</b>: <%- locals.eveniment.locatie%></p>
+                            <p><b>Certificat verde</b>: <%- locals.eveniment.certificat_verde === true ? "da" : "nu" %></p>
+                            <p><b>Durata</b>: <%- locals.eveniment.durata === null ? "-" : locals.eveniment.durata + " minute" %></p>
+                        </div>
+                        <div class="info-bilete">
+                            <p><b>Bilete:</b></p>
+                            <% for(let bilet of locals.bilete) { %>
+                                <p><b><%- bilet.categ_bilet %></b> pret: <%- bilet.pret_bilet%> lei</p>
+                                <p>Locuri disponibile: <%- bilet.nr_bilete_disponibile%></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+
+</html>

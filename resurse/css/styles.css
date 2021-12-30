@@ -8,10 +8,12 @@ body {
     --primary-darker-color:#FA5100;
     --primary-lighter-color:#F59400;
     --shiny-border: rgba(250, 81, 0, 0.1);
-    --background-color:#FFFFFF;
+    --background-color:#F5F5F5;
+    --section-background-color:#FFFFFF;
     --section-color: #F8F8F0;
     --border-color:#000000;
     --text-color: #3f3350;
+    --text-color-on-dark: #FFFFFF;
     --large-text-navbar: 1rem;
     --small-text-navbar: 0.85rem;
     --nav-items-large-width: 13rem;
@@ -19,6 +21,12 @@ body {
     --padding-intern:4%;
     --s: 2px;
     --nav-height: 3.2rem;
+    background-color: var(--background-color);
+}
+
+main {
+    position: relative;
+    top: var(--nav-height);
 }
 
 #iframe-container {
@@ -43,7 +51,7 @@ body {
     text-decoration:none;
     color: var(--text-color);
     text-align: center;		 
-    background: var(--background-color);
+    background: var(--section-background-color);
     transition-property: background, color;
     transition-duration: 1s;
     transition-timing-function: linear;
@@ -69,43 +77,49 @@ body {
 
 #despre {
     grid-area: gr-despre;
-    background-color: var(--background-color);
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #online-users {
     grid-area: gr-online-users;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #user-data-and-stats {
     grid-area: gr-user-data;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #site-and-server-data {
     grid-area: gr-server-data;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #events {
     grid-area: gr-events;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #anunturi {
     grid-area: gr-anunturi;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 #table {
     grid-area: gr-table;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
@@ -116,6 +130,7 @@ body {
 }
 #diverse {
     grid-area: gr-diverse;
+    background-color: var(--section-background-color);
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
@@ -302,31 +317,31 @@ tr:nth-child(odd) {
 	}
 }
 
-	@page {
-		size: A4 portrait;
-		margin-bottom:2cm;
-		margin-top:2cm;
-		counter-increment: page;
-			
-	}
-	@page:left{
-		margin-left: 2.5cm;
-		margin-right: 0.5cm;
-	}
-	@page:right{
-		margin-right: 2.5cm;
-		margin-left: 0.5cm;
-	}
-  
-    hr {
-        border: none;
-        height: 20px;
-        width: 100%;
-        background-image: radial-gradient(circle, var(--primary-lighter-color) 40%, var(--primary-darker-color) 50%, transparent 70%),
-        linear-gradient(white, transparent, var(--primary-darker-color)50%, transparent, white);
-        background-size: 20px 20px, auto;
-        background-repeat: no-repeat, no-repeat;
-        background-position-x: center;
-        background-position-y: center;
+@page {
+    size: A4 portrait;
+    margin-bottom:2cm;
+    margin-top:2cm;
+    counter-increment: page;
+        
+}
+@page:left{
+    margin-left: 2.5cm;
+    margin-right: 0.5cm;
+}
+@page:right{
+    margin-right: 2.5cm;
+    margin-left: 0.5cm;
+}
 
-    }
+hr {
+    border: none;
+    height: 20px;
+    width: 100%;
+    background-image: radial-gradient(circle, var(--primary-lighter-color) 40%, var(--primary-darker-color) 50%, transparent 70%),
+    linear-gradient(white, transparent, var(--primary-darker-color)50%, transparent, white);
+    background-size: 20px 20px, auto;
+    background-repeat: no-repeat, no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+
+}

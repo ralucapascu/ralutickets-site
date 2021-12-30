@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>Evenimente</title>
+        <meta name="description" content="RaluTickets ofera bilete la o varietate de evenimente, cum ar fi: evenimente sportive, culturale, concerte, festivaluri, teatru si multe altele. ">
+        <meta name="keywords" content="bilet, bilete, bilete online, evenimente, sport, muzica, piesa de teatru, festival, concert, copii, spectacole, rock, fotbal, tenis, pop">
+        <%- include("../fragmente/head-evenimente.ejs") %>
+    </head>
+
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <div id="filtre">
+                <h3>Filtre</h3>
+
+                <div class="form-group">
+                    <label for="input-nume-eveniment"><b>Nume eveniment</b></label>
+                    <input type="text" class="form-control" id="input-nume-eveniment">
+                </div>
+
+                <label for="range-pret-min" class="form-label"><b>Pret minim bilet</b></label>
+                <input type="range" class="form-range" id="range-pret-min" value="0" min="0" max="<%- locals.pret_min_max %>"> <span id="infoRange">(0)</span>
+                <br>
+
+                <label class="form-check-label" for="grup-radio-tara"><b>Tara</b>:</label>
+                <div id="grup-radio-tara">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio-tari" value="" id="radio-tari" checked>
+                    <label class="form-check-label" for="radio-tari">
+                      Oricare
+                    </label>
+                  </div>
+                  <% for(let tara of locals.tari) { %>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" value="<%- tara %>" name="radio-tari" id="radio-tari">
+                    <label class="form-check-label" for="radio-tari">
+                      <%- tara %>
+                    </label>
+                  </div>
+                  <% } %>
+                </div>
+
+
+                <label class="form-check-label" for="grup-checkbox-subcategorie"><b>Subcategorii</b>:</label>
+                <div id="grup-checkbox-subcategorie">
+                    <% for(let subC of locals.subcategorii) { %>
+                    <div class="form-check checkbox-subcategorie">
+                        <input class="form-check-input" type="checkbox" value="<%- subC %>" id="checkbox-input" checked aria-describedby="">
+                        <label class="form-check-label" for="check-<%- subC %>">
+                        <%- subC %>
+                        </label>
+                        <div id="subcateg-required" class="invalid-feedback">
+                        
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                
+
+                  <div class="form-group" id="admite_voucher">
+                    <label for="select-admite-voucher"><b>Admite voucher</b></label>
+                    <select class="form-control" id="select-admite-voucher">
+                      <option value="" default>Nu conteaza</option>
+                      <option value="true">Da</option>
+                      <option value="false">Nu</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="select-categorie-varsta"><b>Selectati valorile pe care NU le doriti</b></label>
+                    <select multiple class="form-control" id="select-categorie-varsta">
+                      <% for (let opt of optiuni_categ_varsta) {%>
+                      <option id="option-varsta" value="<%- opt %>"><%- opt %></option>
+                      <% } %>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="descriere-eveniment">Descriere eveniment</label>
+                    <textarea class="form-control" id="descriere-eveniment" rows="3"></textarea>
+                  </div>
+
+                  <div id="range-inceput" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                    <label for="example">De la...</label>
+                    <input placeholder="Select date" type="date" id="input-inceput" class="form-control" aria-describedby="">
+                    <div id="invalidDateInceput" class="invalid-feedback">
+
+                    </div>
+                  </div>
+                  <div id="range-sfarsit" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                    <label for="example">Pana la...</label>
+                    <input placeholder="Select date" type="date" id="input-sfarsit" class="form-control" aria-describedby="">
+                    <div id="invalidDateSfarsit" class="invalid-feedback">
+
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-primary" id="btn-filter">Filtreaza</button>
+                  <button type="button" class="btn btn-danger" id="btn-reset">Reseteaza filtrele</button>
+                  <button type="button" class="btn btn-secondary" id="sort-asc">Sorteaza crescator</button>
+                  <button type="button" class="btn btn-secondary" id="sort-desc">Sorteaza descrescator</button>
+                  <button type="button" class="btn btn-info" id="btn-calculeaza">Calculeaza</button>
+                  <div id="div-min">
+                    Apăsați Alt+"c" sau pe butonul "Calculeaza" pentru cel mai mic pret al biletelor produselor afișate.
+                  </div>
+            </div>
+
+            <div id="produse">
+            <% for(let eveniment of locals.evenimente) { %>
+                <article class="produs" id="ar_ent_<%- eveniment.id_eveniment%>">
+                    <h3><a href="/eveniment/<%- eveniment.id_eveniment%>"><%- eveniment.nume_eveniment %></a></h3>
+                    <div id="info-produs">
+                        <div id="categ-produs">
+                            <p><b>Categorie</b>: <span class="val-categ-eveniment"><%- eveniment.categ_eveniment %></span></p>
+                            <img id="imag-produs" src="<%- eveniment.cale_imagine %>" width="180px" height="240px">
+                            <p id="descriere"><span class="val-descriere" value="<%- eveniment.descriere %>"></span><%- eveniment.descriere %></p>
+                        </div>
+                        <div class="alte-detalii">
+                            <p><b>Pret bilet</b>: de la <span class="val-pret-min" value="<%- eveniment.pret_min%>"><%- eveniment.pret_min %></span> lei</p>
+                            <p><b>Subcategorie</b>: <span class="val-subcateg-eveniment" value="<%- eveniment.subcateg_eveniment%>"></span><%- eveniment.subcateg_eveniment %></p>
+                            <p><b>Categorie varsta</b>: <span class="val-categ-varsta" value="<%- eveniment.categ_varsta%>"></span><%- eveniment.categ_varsta %></p>
+                            <p><b>Data eveniment</b>: 
+                                <time datetime="<%- eveniment.data_eveniment%>">
+                                    <%- eveniment.zi_eveniment %>-<%- eveniment.nume_luna_eveniment%>-<%- eveniment.an_eveniment%> [<%- eveniment.nume_zi_eveniment %>]
+                                </time>
+                                <span class="data-eveniment" value="<%- eveniment.data_eveniment%>" style="display: none;"></span>
+                            </p>
+                            <p><b>Admite voucher</b>: <span class="val-admite-voucher" value="<%- eveniment.admite_voucher%>">
+                              <%- eveniment.admite_voucher === true ? "da" : "nu" %>
+                              </span>
+                            </p>
+                            <p><b>Tara</b>: <span class="val-tara" value="<%- eveniment.tara%>"></span><%- eveniment.tara %></p>
+                        </div>
+                    </div>
+                </article>
+            <% } %>
+            </div>
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+
+</html>

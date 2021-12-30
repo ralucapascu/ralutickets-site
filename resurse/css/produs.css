@@ -1,0 +1,48 @@
+main > * {
+    margin-top: 2 rem;
+    margin-bottom: 2rem;
+}
+
+#container-eveniment {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 30px;
+}
+
+#info-produs {
+    display: flex;
+    flex-direction: row;
+}
+
+.info-bilete {
+    flex-basis: 40%;
+}
+
+#categ-produs {
+    flex-basis: 30%;
+}
+
+#alte-detalii {
+    flex-basis: 30%;
+}
+
+#descriere {
+    font-size: 0.8rem;
+}
+
+.eveniment{
+    padding: 0 20px;
+    width: 1200px;
+    height: 500px;
+    border: 1px solid var(--primary-darker-color);
+    border-radius: 5px;
+    box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+}
+
+.produs h3 {
+    text-align: center;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-darker-color);
+}

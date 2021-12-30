@@ -11,7 +11,7 @@
                 </label>
                 <input class="ch-submenu" type="checkbox" id="acasa">
                 <ul class="submeniu">
-                    <li><a href=#despre>Despre noi</a></li>
+                    <li><a href=/#despre>Despre noi</a></li>
                     <li><a href=#recomandari>Recomandarile noastre</a></li>
                     <li><a href=#info-coronavirus>Noutati Coronavirus</a></li>
                     <li><a href=#faq>FAQ</a></li>
@@ -21,11 +21,13 @@
                 <label for="evenimente">Evenimente</label>
                 <input class="ch-submenu" type="checkbox" id="evenimente">
                 <ul class="submeniu">
-                    <li><a href="#">Concerte si festivaluri</a></li>
-                    <li><a href="#">Evenimente sportive</a></li>
-                    <li><a href="#">Cultura</a></li>
-                    <li><a href="#">Pentru copii</a></li>
-                    <li><a href="#">Diverse</a></li>
+                    <% for (let opt of locals.optiuni_categ_eveniment){  %>
+                        <% if (opt === "Toate evenimentele") {%>
+                    <li><a href="/evenimente"><%- opt %></a></li>
+                        <% }else { %>
+                            <li><a href="/evenimente?tip=<%- opt %>"><%- opt %></a></li>
+                        <% } %>
+                    <% } %>
                 </ul>
             </li>
             <li><a href="#">Cos de cumparaturi</a></li>
@@ -40,5 +42,4 @@
             </li>
         </ul>
     </nav>
-    <h1>RaluTickets</h1>  <!-- task 6-->
 </header>
