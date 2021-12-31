@@ -1,8 +1,11 @@
 #galerie-statica {
-  padding-left: var(--padding-intern);
-  padding-right: var(--padding-intern);
-  width: fit-content;
+  padding-left: 30px;
+  padding-right: 30px;
   overflow: hidden;
+  background-color: var(--section-background-color);
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
 }
 
 #grid-galerie figcaption {

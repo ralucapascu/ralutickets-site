@@ -5,7 +5,6 @@
 			"cale_imagine":"baseball.jpg",
 			"titlu":"Baseball",
             "descriere": "Un meci de baseball",
-            "timp2": "10:00-20:00",
             "timp": "00:00-23:59"
 		},
 		{
@@ -18,39 +17,37 @@
 			"cale_imagine":"basketball.jpg",
 			"titlu":"Basketball",
             "descriere": "Un meci de basket",
-            "timp": "07:00-22:00"
+            "timp": "00:00-22:00"
 		},
 		{
 			"cale_imagine":"concert1.jpg",
 			"titlu":"Concert",
             "descriere": "Un concert fain",
-            "timp": "06:00-23:00"
+            "timp": "00:00-23:00"
 		},
 		{
 			"cale_imagine":"concert2.jpg",
 			"titlu":"Concert",
             "descriere": "Alt concert fain",
-            "timp": "06:00-22:00"
+            "timp": "00:00-22:00"
 		},
 		{
 			"cale_imagine":"concert3.jpg",
 			"titlu":"Concert",
             "descriere": "Un alt concert si mai fain",
-            "timp2": "07:00-19:00",
-            "timp": "10:00-20:00"
+            "timp": "00:00-20:00"
 		},
 		{
 			"cale_imagine":"concert4.jpg",
 			"titlu":"Concert",
             "descriere": "Atmosfera faina la concert",
-            "timp2": "02:00-19:00",
             "timp": "10:00-20:00"
 		},
 		{
 			"cale_imagine":"concert5.jpg",
 			"titlu":"Concert",
             "descriere": "Concert Untold",
-            "timp": "06:00-23:59"
+            "timp": "00:00-23:59"
 		},
 		{
 			"cale_imagine":"concert6.jpg",
@@ -62,13 +59,13 @@
 			"cale_imagine":"concert7.jpg",
 			"titlu":"Concert",
             "descriere": "Doamne ce fainosag di concert uai",
-            "timp": "08:00-22:00"
+            "timp": "00:00-22:00"
 		},
         {
             "cale_imagine":"ski.jpg",
             "titlu":"Ski",
             "descriere": "Ski pe munte cu zapada",
-            "timp": "06:00-00:00"
+            "timp": "00:00-23:59"
         },
         {
             "cale_imagine":"theatre1.jpg",
@@ -80,13 +77,26 @@
             "cale_imagine":"theatre2.jpg",
             "titlu":"Teatru",
             "descriere": "Piesa de teatru",
-            "timp": "05:00-18:00"
+            "timp": "00:00-18:00"
         },
         {
             "cale_imagine":"theatre3.jpg",
             "titlu":"Teatru",
             "descriere": "Pregatiri pentru teatru",
-            "timp": "10:00-22:00"
+            "timp": "00:00-22:00"
+        },
+        {
+            "cale_imagine":"concert8.jpg",
+            "titlu":"Concert",
+            "descriere": "Super artist canta pe scena wow",
+            "timp": "00:00-23:59"
+        },
+        {
+            "cale_imagine":"concert9.jpg",
+            "titlu":"Concert",
+            "descriere": "Artist care isi da totul pe scena",
+            "timp": "00:00-12:59",
+            "atribuire": "Jetset'er @ ACSP Summer Concert 2010 by npbn is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/?ref=openverse&atype=rich "
         }
 	]
 }

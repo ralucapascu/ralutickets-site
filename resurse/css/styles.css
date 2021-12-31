@@ -69,11 +69,21 @@ main {
                          "gr-events gr-events gr-table gr-table"
                          "gr-anunturi gr-anunturi gr-table gr-table"
                          "gr-diverse gr-diverse gr-diverse gr-diverse"
-                         "gr-diverse gr-diverse gr-diverse gr-diverse";
+                         "gr-diverse gr-diverse gr-diverse gr-diverse"
+                         "gr-galerie-statica gr-galerie-statica gr-galerie-statica gr-galerie-statica"
+                         "gr-galerie-animata gr-galerie-animata gr-galerie-animata gr-galerie-animata";
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap:0.5em;
     grid-column-gap:0.5em;
 }
+
+#sectiune-galerie-animata {
+	grid-area: gr-galerie-animata;
+}
+
+#galerie-statica {
+    grid-area: gr-galerie-statica;
+  }
 
 #despre {
     grid-area: gr-despre;

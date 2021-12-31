@@ -24,7 +24,6 @@ client.connect();
 
 var optiuni_categ_eveniment=[];
 client.query("select * from unnest(enum_range(null::tip_eveniment))", function(errCateg, rezCateg) {
-    console.log(errCateg, rezCateg);
     for(let elem of rezCateg.rows) {
         optiuni_categ_eveniment.push(elem.unnest);
     }
@@ -110,20 +109,21 @@ function creeazaImagini() {
 creeazaImagini();
 imaginiValideStatica = [];
 imaginiValideAnimata = [];
-d = new Date();
+d = moment();
 
 function filtreazaImaginiStatica() {
     imaginiValideStatica = [];
     let nr = 0;
     for(let imag of obImagini.imagini) {
-        nr += 1;
         let oraInceput = imag.timp.slice(0,5);
         let oraSfarsit = imag.timp.slice(6,11);
         startDate = moment(oraInceput, "hh:mm");
         endDate = moment(oraSfarsit, "hh:mm");
+        // console.log(startDate, endDate, d, startDate.isBefore(d), endDate.isAfter(d));
         if(startDate.isBefore(d) && endDate.isAfter(d)) {
-            if(nr <= 10) {
+            if(nr < 10) {
                 imaginiValideStatica.push(imag);
+                nr += 1;
             }
         }
     }
@@ -139,18 +139,18 @@ function filtreazaImaginiDinamica() {
         nr = random.int((min = 6), (max = 12));
     }
     for(let imag of obImagini.imagini) {
-        i += 1;
         let oraInceput = imag.timp.slice(0,5);
         let oraSfarsit = imag.timp.slice(6,11);
         startDate = moment(oraInceput, "hh:ss");
         endDate = moment(oraSfarsit, "hh:ss");
         if(startDate.isBefore(d) && endDate.isAfter(d)) {
-            if(i <= nr) {
+            if(i < nr) {
                 imaginiValideAnimata.push(imag);
+                i += 1;
             }
         }
-        nrImagAleatoare = imaginiValideAnimata.length;
     }
+    nrImagAleatoare = imaginiValideAnimata.length;
 }
 
 app.get(["/favicon.ico"], function(req , res){/*code*/});
@@ -311,5 +311,7 @@ app.get("/*",function(req, res) {
 
 var s_port=process.env.PORT || 5000;
 app.listen(s_port);
+
+// app.listen(8080);
 
 console.log("Serverul a pornit");

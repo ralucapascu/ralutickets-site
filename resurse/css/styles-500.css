@@ -12,7 +12,8 @@ html {
                          "gr-events"
                          "gr-table"
                          "gr-anunturi"
-                         "gr-diverse";
+                         "gr-diverse"
+                         "gr-galerie-statica";
     grid-template-columns: 1fr;
     padding-left:1em;
     padding-right:1em; 

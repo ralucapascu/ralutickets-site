@@ -1,29 +1,41 @@
 #sectiune-galerie-animata {
   padding-left: var(--padding-intern);
-  /* variabila din css-ul general*/
   padding-right: var(--padding-intern);
+  background-color: var(--section-background-color);
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 5px;
+  box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+  height: 400px;
 }
 
-.galerie-a {
-  width: 400px;
-  height: 300px;
+#galerie-animata {
+  width: 300px;
+  height: 200px;
+  border: 10px solid transparent;
+  border-image: url("/resurse/imagini/border.png");
+  border-image-repeat: round;
+  border-image-slice: 30;
+  border-image-width: 10px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 5rem;
+  display: block;
 }
 
-.galerie-a figcaption {
+#galerie-animata figcaption {
   position: absolute;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
   width: 100%;
   text-align: center;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.galerie-a figure {
-  position: relative;
-  width: 400px;
-  height: 300px;
+#galerie-animata figure {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 /*cum calculam timpii:
@@ -38,92 +50,88 @@ x%........3s
 - calculam 100-14.285714=85.714286 - la acest moment imaginea trebuie sa se vada in spatele imaginii care se afiseaza in mod curent (ca sa se vada si cat timp se realizeaza efectul de schimbare a imaginii
 */
 #galerie-animata figure {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 0;
   animation-name: gal_exemplu;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
-  animation-duration: 33s;
+  animation-duration: 24s;
   transform-origin: center center;
 }
 
+#galerie-animata:hover figure {
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
 #galerie-animata figure:nth-of-type(1) {
-  animation-delay: 0s;
+  animation-delay: 18s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(2) {
-  animation-delay: 3s;
+  animation-delay: 15s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(3) {
-  animation-delay: 6s;
+  animation-delay: 12s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(4) {
   animation-delay: 9s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(5) {
-  animation-delay: 12s;
+  animation-delay: 6s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(6) {
-  animation-delay: 15s;
+  animation-delay: 3s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(7) {
-  animation-delay: 18s;
+  animation-delay: 0s;
+  z-index: 0;
 }
 
 #galerie-animata figure:nth-of-type(8) {
-  animation-delay: 21s;
-}
-
-#galerie-animata figure:nth-of-type(9) {
-  animation-delay: 24s;
-}
-
-#galerie-animata figure:nth-of-type(10) {
-  animation-delay: 27s;
-}
-
-#galerie-animata figure:nth-of-type(11) {
-  animation-delay: 30s;
+  animation-delay: -3s;
+  z-index: 0;
 }
 
 @keyframes gal_exemplu {
   0% {
     z-index: 10;
     opacity: 1;
+    transform: translateX(0%);
   }
-  /*perioada 0-5% in care se afiseaza fara efect */
-  /*transformare inceput disparitie*/
-  4.5454545455% {
+  3.25% {
+    transform: translateX(0%);
+  }
+  6.25% {
     transform: translateX(20%);
-  }
-  /* de  aici doresc sa descresc si opacitatea;*/
-  6.0909090909% {
     opacity: 1;
   }
-  9.0909089909% {
-    z-index: 10;
-    opacity: 0;
+  9.5% {
     transform: translateX(-40%);
   }
-  9.0909090909% {
-    z-index: -10;
-    transform: translateX(0%);
+  12.5% {
+    transform: translateX(100%);
+    opacity: 0;
   }
-  /* il ascund cat mai in spate sa nu vina peste imaginile care erau mai sus in html decat el*/
-  90.9090908091% {
+  87.5% {
     opacity: 0;
     z-index: -10;
     transform: translateX(0%);
   }
-  90.9090908091% {
+  87.5000001% {
     z-index: 0;
   }
   /*setez z-index la 0 ca sa revina la ordinea normala de afisare*/
@@ -132,7 +140,7 @@ x%........3s
     z-index: 0;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   #sectiune-galerie-animata {
     display: none;
   }

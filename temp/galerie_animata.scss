@@ -1,30 +1,42 @@
 @use 'sass:math';
-$nrimag: 11;
+$nrimag: 8;
 
 
 #sectiune-galerie-animata {
-	padding-left: var(--padding-intern);/* variabila din css-ul general*/
+	padding-left: var(--padding-intern);
 	padding-right: var(--padding-intern);
+	background-color: var(--section-background-color);
+	border: 1px solid var(--primary-darker-color);
+	border-radius: 5px;
+	box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+	height: 400px;
 }
-.galerie-a{
-	width:400px;
-	height:300px;
-	// border:4px inset $setare-server;
+#galerie-animata{
+	width:300px;
+	height:200px;
+	border: 10px solid transparent;
+  	border-image: url("/resurse/imagini/border.png");
+	border-image-repeat: round;
+	border-image-slice: 30;
+	border-image-width: 10px;
 	position:relative;
 	overflow:hidden;
-	margin-bottom:5rem;
+	display: block;
 }
-.galerie-a figcaption{
+#galerie-animata figcaption{
 	position:absolute;
 	bottom:0;
-	background:rgba(255,255,255,0.7);
 	width:100%;
 	text-align:center;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0.5);
 }
-.galerie-a figure{
-	position:relative;
-	width:400px;
-	height:300px;
+#galerie-animata figure{
+	width: fit-content;
+	height: fit-content;
+	position:absolute;
+	left:0;
+	top:0;
 }
 
 /*cum calculam timpii:
@@ -43,10 +55,6 @@ $animationDuration: 3 * $nrimag;
 $imgTimePerc: math.div(3, $animationDuration) * 100;
 
 #galerie-animata figure{	
-	position:absolute;
-	left:0;
-	top:0;
-	z-index:0;
 	animation-name: gal_exemplu;
 	animation-timing-function:linear;
 	animation-iteration-count:infinite;
@@ -55,29 +63,39 @@ $imgTimePerc: math.div(3, $animationDuration) * 100;
 	transform-origin:center center;
 }
 
+#galerie-animata:hover figure {
+	animation-play-state: paused;
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	-o-animation-play-state: paused;
+	animation-play-state: paused;
+  }
+  
+
 @for $i from 1 through $nrimag {
     #galerie-animata figure:nth-of-type(#{$i}) {
-        animation-delay: #{3 * ($i - 1)}s;
+        animation-delay: #{3 * ($nrimag - $i - 1)}s;
+		z-index:0;
     }
 }
 
 @keyframes gal_exemplu{ 
-	0% {z-index:10;opacity:1;} /*perioada 0-5% in care se afiseaza fara efect *//*transformare inceput disparitie*/
+	0% {z-index:10;opacity:1;transform:translateX(0%);} 
 	$hideImg: math.div($imgTimePerc, 2);
-    #{$hideImg * 1%} {transform:translateX(20%);} /* de  aici doresc sa descresc si opacitatea;*/
-    $hideImg: $imgTimePerc - 3;
-    #{$hideImg * 1%} {opacity: 1;}
-	#{($imgTimePerc - 0.0000001) * 1%} {z-index:10;opacity:0;transform:translateX(-40%);}
-	$hideImg: $hideImg + 0.00001;
-    #{$imgTimePerc * 1%} {z-index:-10; transform:translateX(0%);}/* il ascund cat mai in spate sa nu vina peste imaginile care erau mai sus in html decat el*/
+    #{($hideImg - 3) * 1%} {transform:translateX(0%);} 
+    #{$hideImg * 1%} {transform:translateX(20%);opacity:1;}
+	$hideImg: $imgTimePerc;
+	#{($imgTimePerc - 3) * 1%} {transform:translateX(-40%);}
+	$hideImg: $hideImg;
+    #{$imgTimePerc * 1%} { transform:translateX(100%);opacity:0;}
 	
-	#{(100 - $imgTimePerc - 0.0000001) * 1%}{opacity:0;z-index:-10;transform:translateX(0%);}	
-	#{(100 - $imgTimePerc - 0.0000001) * 1%}{z-index:0;}/*setez z-index la 0 ca sa revina la ordinea normala de afisare*/
+	#{(100 - $imgTimePerc) * 1%}{opacity:0;z-index:-10;transform:translateX(0%);}	
+	#{(100 - $imgTimePerc + 0.0000001) * 1%}{z-index:0;}/*setez z-index la 0 ca sa revina la ordinea normala de afisare*/
 	100%{opacity:1;z-index:0;}
 }
 
-@media screen and (max-width:500px){
-	#sectiune-galerie-animata{
-		display: none;
+@media screen and (max-width: 800px) {
+	#sectiune-galerie-animata {
+	  display: none;
 	}
 }
