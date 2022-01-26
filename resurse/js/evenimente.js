@@ -1,4 +1,13 @@
 window.onload = function() {
+  
+  var tema = localStorage.getItem("tema");
+    if(!tema){
+        localStorage.setItem("tema", "light");
+    }
+    else {
+        if(tema == "dark")
+            document.body.classList.add("dark");
+    }
 
   let btn_filter = document.getElementById("btn-filter");
   btn_filter.onclick = function() {
@@ -129,8 +138,6 @@ window.onload = function() {
       
       info.innerHTML="("+this.value+")";
   }
-
-
 
   function sorteaza(semn){
       var articole=document.getElementsByClassName("produs");
