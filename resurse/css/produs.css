@@ -1,6 +1,6 @@
 main > * {
     margin-top: 2 rem;
-    margin-bottom: 2rem;
+    color: var(--text-color);
 }
 
 #container-eveniment {
@@ -35,7 +35,7 @@ main > * {
 .eveniment{
     padding: 0 20px;
     width: 1200px;
-    height: 500px;
+    height: 600px;
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
@@ -46,3 +46,4 @@ main > * {
     color: var(--text-color);
     border-bottom: 2px solid var(--primary-darker-color);
 }
+

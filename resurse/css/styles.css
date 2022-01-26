@@ -1,6 +1,11 @@
 html {
+    position: relative;
+    min-height: 100%;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
+}
+header {
+    color: var(--text-color);
 }
 
 body {
@@ -18,7 +23,29 @@ body {
     --small-text-navbar: 0.85rem;
     --nav-items-large-width: 13rem;
     --nav-items-small-width: 9rem;
-    --padding-intern:4%;
+    --padding-intern: 2%;
+    --s: 2px;
+    --nav-height: 3.2rem;
+    background-color: var(--background-color);
+    transition: background 0.2s linear;
+}
+
+body.dark {
+    --primary-color:#FA5100;
+    --primary-darker-color:#FA5100;
+    --primary-lighter-color:#FA5100;
+    --shiny-border: rgba(250, 81, 0, 0.1);
+    --background-color: #000000;
+    --section-background-color: rgba(20, 20, 20, 1);
+    --section-color: #F8F8F0;
+    --border-color:#000000;
+    --text-color: #FFFFFF;
+    --text-color-on-dark: #FFFFFF;
+    --large-text-navbar: 1rem;
+    --small-text-navbar: 0.85rem;
+    --nav-items-large-width: 13rem;
+    --nav-items-small-width: 9rem;
+    --padding-intern: 2%;
     --s: 2px;
     --nav-height: 3.2rem;
     background-color: var(--background-color);
@@ -27,7 +54,100 @@ body {
 main {
     position: relative;
     top: var(--nav-height);
+    margin-top: 25px;
+    margin-bottom: 300px;
+    color: var(--text-color);
 }
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.label {
+    box-sizing: border-box;
+    width: 50px;
+    height: 26px;
+    background-color: var(--primary-darker-color);
+    display: flex;
+    border-radius:50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    transform: scale(1.5);
+}
+
+.ball {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball{
+    transform: translateX(24px);
+}
+
+.fa-moon {
+    color: white;
+}
+
+.fa-sun {
+color: yellow;
+}
+
+#banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-lighter-color);
+    width: 25%;
+    height: 100px;
+    z-index: 200;
+    color: var(--text-color);
+    padding: var(--padding-intern);
+    font-size: 1em;
+    display: none;
+    animation-name: animatie-banner;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    transform-origin: bottom left;
+}
+
+
+@keyframes animatie-banner {
+    0%{
+        transform:scale(0,0);
+        opacity: 0;
+        background-color: var(--section-background-color);
+    }
+    100%{
+        transform:scale(1,1);
+        opacity: 0.75;
+        background-color: var(--primary-darker-color);
+    }  
+}
+
+@media only screen and (max-width: 1200px) {
+    #banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-lighter-color);
+        width: 25%;
+        height: 100px;
+        z-index: 200;
+        color: var(--text-color);
+        padding: var(--padding-intern);
+        font-size: 1em;
+        animation: none;
+    }
+  }
 
 #iframe-container {
     display: flex;
@@ -75,6 +195,7 @@ main {
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap:0.5em;
     grid-column-gap:0.5em;
+    color: var(--text-color);
 }
 
 #sectiune-galerie-animata {
@@ -91,6 +212,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #online-users {
     grid-area: gr-online-users;
@@ -98,6 +220,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #user-data-and-stats {
     grid-area: gr-user-data;
@@ -105,6 +228,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #site-and-server-data {
     grid-area: gr-server-data;
@@ -112,6 +236,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #events {
     grid-area: gr-events;
@@ -119,6 +244,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #anunturi {
     grid-area: gr-anunturi;
@@ -126,6 +252,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 #table {
     grid-area: gr-table;
@@ -137,6 +264,7 @@ main {
     flex-direction:column;
     align-items: center;
     caption-side: bottom;
+    padding: var(--padding-intern);
 }
 #diverse {
     grid-area: gr-diverse;
@@ -144,6 +272,7 @@ main {
     border: 1px solid var(--primary-darker-color);
     border-radius: 5px;
     box-shadow: var(--shiny-border) 0px 0px 26px 5px;
+    padding: var(--padding-intern);
 }
 .fa-house-chimney {
     color: #000000;
@@ -181,6 +310,7 @@ main {
 #sageata {
     color: var(--text-color);
     font-size: 40px;
+    display: block;
 }
 #link-top .tooltiptext {
     visibility: hidden;
@@ -206,13 +336,15 @@ main {
     margin-right: auto;
   }
   footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
     background-color: var(--primary-darker-color);
     color: white;
-    height: 115px;
-    padding-left:var(--padding-intern);
-    padding-right:var(--padding-intern);
     padding-top: 1rem;
     padding-bottom: 1rem;
+    min-width: 100%;
+    
 }
 ::cue {
     text-align:center;

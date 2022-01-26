@@ -1,6 +1,6 @@
 main > * {
     margin-top: 2 rem;
-    margin-bottom: 2rem;
+    color: var(--text-color);
 }
 
 #produse {
