@@ -1,0 +1,87 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta name="description" content="RaluTickets - chat">
+		<meta name="keywords" content="bilet, bilete, bilete online, evenimente, chat, contact, support, ralutickets">
+		<title>RaluTickets - chat</title>
+		<%- include("../fragmente/head.ejs")%>
+	
+	<style>
+	#mesaje_chat{
+		border:1px solid black;
+		height:200px;
+		overflow:auto;
+		width:500px;
+		background: white;
+        margin-top: 100px;
+	}
+	</style>
+	<script type="text/javascript" src="/resurse/client-dist/socket.io.js"></script> 
+	<script>port=<%= port %></script>
+	<script>
+	
+	
+	socketUrl = "../../";  
+	if(document.location.href.indexOf("localhost") != -1) {  
+		socketUrl = "http://127.0.0.1:"+port;
+	}
+	//const socket = io(socketUrl,{reconnect: true});  
+	socket = io();
+	socket.on("mesaj_nou", (nume, font, mesaj,data) => {  
+	
+		var chat=document.getElementById("mesaje_chat");
+		chat.innerHTML+=`<p>(${data}) <i><u> ${nume}</u> </i><span style='font-size:${font}'>:    ${mesaj} </span> `;
+		chat.scrollTop=chat.scrollHeight;
+	});
+	
+	function trimite(){
+		var font=document.getElementById("font").value;
+		var nume=document.getElementById("nume").value;
+		var mesaj=document.getElementById("mesaj").value;
+		var date=new Date();
+		console.log(date.toLocaleTimeString('ro-RO'))
+		data=date.toLocaleTimeString('ro-RO')
+		var http = new XMLHttpRequest();
+		var url = '/mesaj';
+		var params = `font=${font}&nume=${nume}&mesaj=${mesaj} &data=${data}`;
+		http.open('POST', url, true);
+
+		
+		http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		
+		http.onreadystatechange = function() {
+			if(http.readyState == 4 && http.status == 200) {
+				//alert(http.responseText);
+			}
+		}
+		http.send(params);
+
+
+}
+
+	</script>
+	</head>
+	<body>
+		<%- include("../fragmente/header.ejs")%>
+		<div id="chat">
+			<div id="mesaje_chat">
+                <label>
+                    <input type="text" id="nume" style='display: none' name="<nume>" value="<%- locals.utilizator.username%>">
+                </label>
+            </div>
+            <br/>
+        
+			<label>
+				Mesaj: <textarea id="mesaj" name="mesaj" value="bau! "></textarea>
+			</label><br/>
+		
+			<label>
+			
+				<input type="range" id="font" name="font" step=2 min="10" max="16" value="12">
+				
+				</label><br/>
+			<button onclick="trimite()">Trimite</button>
+		</div>
+		<%- include("../fragmente/footer.ejs")%>
+	</body>
+</html>

@@ -17,6 +17,9 @@
                     <li><a href=#faq>FAQ</a></li>
                 </ul>
             </li>
+            <% if (locals.utilizator && locals.utilizator.rol=="admin") { %> 
+                <li><a href="/useri">Utilizatori</a></li>
+            <% } %>
             <li>
                 <label for="evenimente">Evenimente</label>
                 <input class="ch-submenu" type="checkbox" id="evenimente">
@@ -30,16 +33,44 @@
                     <% } %>
                 </ul>
             </li>
-            <li><a href="#">Cos de cumparaturi</a></li>
+            <li><a href="/cos-virtual">Cos de cumparaturi</a></li>
             <li><a href="/info-covid">Info Coronavirus</a></li>
+            <% if (locals.utilizator) { %>
             <li>
                 <label for="contul-meu">Contul meu</label>
                 <input class="ch-submenu" type="checkbox" id="contul-meu">
                 <ul class="submeniu">
-                    <li><a href="#">Date personale</a></li>
+                    <li><a href="/profil">Date personale</a></li>
                     <li><a href="#">Istoric cumparaturi</a></li>
                 </ul>
             </li>
+            <li><a href="/chat">Chat</a></li>
+            <% } %>
+    <% if (!locals.utilizator) { %>
+    <li><a href="/inregistrare">Inregistrare</a></li>
+    <% } %>
         </ul>
     </nav>
+    <div id="div-login">
+        <% if (!locals.utilizator) { %>
+                
+            <p>Va rugam sa va logati: <br/>
+            <form id="login" method="post" action="/login">
+                
+                <label>
+                    Username: <input type="text" name="username" value="" class="login">
+                </label>
+                <label>
+                    Parola: <input type="password" name="parola" value="" class="login">
+                </label>
+                
+                <input type="submit" value="Login">
+            </form>
+            <% if(locals.mesajLogin) {%>
+                <p style='color:red'>Eroare: <%- locals.mesajLogin %></p>
+            <% } %>
+        <% } else { %>
+            <p title="logout">Iesire <a href="/logout"><%- locals.utilizator.username%></a></p>
+            <% } %>
+    </div>
 </header>

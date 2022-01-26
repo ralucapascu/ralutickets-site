@@ -5,12 +5,22 @@
         <meta name="description" content="RaluTickets ofera bilete la o varietate de evenimente, cum ar fi: evenimente sportive, culturale, concerte, festivaluri, teatru si multe altele. ">
         <meta name="keywords" content="bilet, bilete, bilete online, evenimente, sport, muzica, piesa de teatru, festival, concert, copii, spectacole, ralutickets">
         <%- include("../fragmente/head.ejs") %>
+        <link rel="stylesheet" href="/temp/galerie_animata.css">
+        <link rel="stylesheet" href="/resurse/css/galerie_statica.css">
+        <link rel="stylesheet" href="/resurse/css/galerie_statica-1200.css" type="text/css" media="screen and (max-width: 1200px)"/>
+        <link rel="stylesheet" href="/resurse/css/galerie_statica-800.css" type="text/css" media="screen and (max-width: 800px)"/>
+        <% if(locals.utilizator && locals.utilizator.problema_vedere == true) {%> 
+        <style>
+            body {
+                font-size: 1.5em;
+            }
+        </style>
+        <% } %>
     </head>
 
     <body id="inceput">
         <%- include("../fragmente/header.ejs") %>
         <main>
-            <p id="banner">Acest site este construit in scop educational</p>
         <div id="grid">
         <section id="despre">  <!-- task 7 si 8-->
             <h2>Despre noi</h2>
@@ -25,6 +35,14 @@
             <aside>
                 <p>Pentru a cumpara cu usurinta bilete, va recomandam sa va creati un cont de utilizator.</p>
             </aside>
+            <div>
+                <input type="checkbox" class="checkbox" id="btn-tema">
+              <label for="btn-tema" class="label">
+                <i class="fas fa-moon"></i>
+                <i class='fas fa-sun'></i>
+                <div class='ball'>
+              </label>
+            </div>
         </section>
 
         <section id="online-users">  <!-- task 7 si 8-->
@@ -201,6 +219,7 @@
     </div>
     <%- include("../fragmente/galerie_statica.ejs") %>
     <%- include("../fragmente/galerie_animata.ejs") %>
+    <%- include("../fragmente/banner.ejs") %>
         </main>
     </div>
     <p id="end">Un paragraf de final.</p>

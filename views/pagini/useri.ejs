@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="Cofetaria Dulcelind - utilizatori.">
+        <meta name="keywords" content="cofetarie, Dulcelind, utilizatori">
+        <link rel="stylesheet" href="/resurse/css/useri.css" type="text/css" />
+        <title>RaluTickets - utilizatori</title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/utilizatori.js></script>
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+    <div class="afisaj">
+        <h2>Useri</h2>
+
+		<table id="useri">
+		  <tr>
+			<th>id</th><th>Username</th><th>Poza</th><th>Probleme vedere</th><th>Sterge poza</th>
+		  </tr>
+
+		  <% for (var i = 0; i < useri.length; i++) { 
+				if(useri[i].rol=="comun"){
+				%>
+				<tr>
+				  <td><%= useri[i].id %></td>
+				  <td><%= useri[i].username %></td>
+				  <% if(useri[i].fotografie) {%>
+				  <td><img src="<%- useri[i].fotografie %>" alt="poza" style="width: 50px; height: auto;" id="poza-<%= useri[i].id %>"></td>
+				 <% } else {%> 
+				  
+				  <td><img src="/resurse/imagini/default.jpg" alt="poza" style="width: 50px; height: auto;" id="poza-<%= useri[i].id %>"></td>
+				 <% } %> 
+				  <td><%= useri[i].probleme_vedere %></td>
+				  <td><button onclick="stergePoza(<%= useri[i].id %>)" class="sterge-poza">Sterge poza</button></td>
+				</tr> 
+   
+				<% } %>			
+		  <% } %>
+		</table>
+		
+		<p>Sterge utilizator</p>
+		<form id="sterge" method="post" action="/sterge_utiliz">
+			<label>
+				Id: <input type="text" name="id_utiliz" value="">
+			</label>
+			
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	<%- include("../fragmente/banner.ejs") %>
+</main>
+
+
+    <%- include("../fragmente/footer") %>
+
+</body>
+</html>

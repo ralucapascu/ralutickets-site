@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="RaluTickets - înregistrare utilizatori.">
+        <meta name="keywords" content="cofetarie, Dulcelind, inregistrare, utilizatori">
+        <title>RaluTickets - Sign in </title>
+        <%- include("../fragmente/head-evenimente") %>     
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+    <div class="afisaj">
+        <h1>Inregistrare utilizator</h1>
+        
+		<% if (locals.err !="") { %>
+			<%-include("../fragmente/formular", {action: "/inreg"}) %>
+	<% } %>
+	<% if(locals.raspuns) { %>
+	<%- locals.raspuns+"<br/>"%>
+	<% } %>
+	<% if(locals.err) { %>
+	<%- locals.err %>
+	<% } %>
+    </div>
+    <%- include("../fragmente/banner.ejs") %>
+</main>
+
+<footer>
+    <%- include("../fragmente/footer") %>
+</footer>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
         <meta name="description" content="RaluTickets ofera bilete la o varietate de evenimente, cum ar fi: evenimente sportive, culturale, concerte, festivaluri, teatru si multe altele. ">
         <meta name="keywords" content="bilet, bilete, bilete online, evenimente, sport, muzica, piesa de teatru, festival, concert, copii, spectacole, rock, fotbal, tenis, pop">
         <%- include("../fragmente/head-evenimente.ejs") %>
+        <script type="text/javascript" src=/resurse/js/eveniment.js></script>
     </head>
 
     <body>
@@ -42,11 +43,13 @@
                             <% for(let bilet of locals.bilete) { %>
                                 <p><b><%- bilet.categ_bilet %></b> pret: <%- bilet.pret_bilet%> lei</p>
                                 <p>Locuri disponibile: <%- bilet.nr_bilete_disponibile%></p>
+                                <button id="btn-adauga">adauga</button> <button id="btn-scade">scade</button> <span id="cantitate">0</span>
                             <% } %>
                         </div>
                     </div>
                 </article>
             </div>
+            <%- include("../fragmente/banner.ejs") %>
         </main>
         <%- include("../fragmente/footer.ejs") %>
     </body>
